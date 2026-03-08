@@ -1,0 +1,381 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preetham | AI Portfolio</title>
+
+<style>
+
+/* GLOBAL */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#0f172a;
+color:white;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:#020617;
+position:sticky;
+top:0;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+
+.home{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:50px;
+padding:80px 40px;
+}
+
+.home img{
+width:220px;
+border-radius:50%;
+}
+
+.home-content span{
+color:#38bdf8;
+}
+
+.btn-group a{
+background:#2563eb;
+padding:10px 15px;
+border-radius:6px;
+color:white;
+text-decoration:none;
+margin-right:10px;
+}
+
+/* SECTIONS */
+
+section{
+padding:60px 80px;
+}
+
+/* CHATBOT */
+
+.ai-assistant{
+background:#020617;
+text-align:center;
+}
+
+.chat-container{
+max-width:700px;
+margin:auto;
+background:#1e293b;
+border-radius:12px;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+#chatMessages{
+height:260px;
+overflow-y:auto;
+background:#020617;
+padding:15px;
+border-radius:8px;
+margin-bottom:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+/* BOT MESSAGE */
+
+.bot-message{
+background:#334155;
+padding:10px 14px;
+border-radius:10px;
+max-width:70%;
+text-align:left;
+}
+
+/* USER MESSAGE */
+
+.user-message{
+background:#2563eb;
+padding:10px 14px;
+border-radius:10px;
+max-width:70%;
+align-self:flex-end;
+}
+
+/* INPUT AREA */
+
+.chat-input{
+display:flex;
+gap:10px;
+}
+
+.chat-input input{
+flex:1;
+padding:12px;
+border-radius:6px;
+border:none;
+font-size:15px;
+}
+
+.chat-input button{
+padding:12px 20px;
+border:none;
+background:#3b82f6;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+.chat-input button:hover{
+background:#2563eb;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>Preetham</h2>
+
+<nav>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#assistant">AI Assistant</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="home">
+
+<div>
+<img src="img/myimg.jpg">
+</div>
+
+<div class="home-content">
+
+<h1>Hi, I'm <span>Preetham</span></h1>
+
+<h3>AI Engineer | Tech Enthusiast</h3>
+
+<p>
+🚀 Building AI-powered solutions and intelligent web applications.<br>
+🤖 Skilled in Python, SQL, Machine Learning.<br>
+📊 Transforming data into insights using data science techniques.
+</p>
+
+<div class="btn-group">
+<a href="https://www.linkedin.com/">LinkedIn</a>
+<a href="https://github.com/">GitHub</a>
+<a href="#">Resume</a>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2>Technical Skills</h2>
+
+<ul>
+<li>Python Programming</li>
+<li>Machine Learning</li>
+<li>Data Analysis (Pandas, NumPy)</li>
+<li>SQL Databases</li>
+<li>Web Development (HTML, CSS, JavaScript)</li>
+</ul>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<h3>Enterprise AI Knowledge Assistant</h3>
+<p>AI assistant that helps enterprises retrieve insights and answers from internal data.</p>
+
+<h3>Crop Recommendation System</h3>
+<p>Machine learning system recommending crops based on soil and weather data.</p>
+
+</section>
+
+
+<!-- AI CHATBOT -->
+
+<section class="ai-assistant" id="assistant">
+
+<h2>Ask My AI Assistant</h2>
+
+<div class="chat-container">
+
+<div id="chatMessages">
+
+<div class="bot-message">
+Hi! Ask me about my name, skills, projects, work, education or contact.
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input type="text" id="userInput" placeholder="Ask something...">
+
+<button onclick="sendMessage()">Send</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p>Email: preethamklpreethu@gmail.com</p>
+<p>Phone: +91 9380175481</p>
+<p>Location: Karnataka, India</p>
+
+</section>
+
+
+<script>
+
+const input=document.getElementById("userInput");
+
+/* ENTER KEY SUPPORT */
+
+input.addEventListener("keypress",function(event){
+
+if(event.key==="Enter"){
+sendMessage();
+}
+
+});
+
+function sendMessage(){
+
+const message=input.value.trim().toLowerCase();
+
+if(message==="") return;
+
+const chat=document.getElementById("chatMessages");
+
+/* USER MESSAGE */
+
+chat.innerHTML+=`<div class="user-message">${message}</div>`;
+
+
+/* QUESTION GROUPS */
+
+const nameQuestions=["name","your name","who are you","introduce yourself"];
+
+const workQuestions=["what are you doing","what do you do","job","work","profession"];
+
+const skillQuestions=["skills","tech stack","technologies","programming"];
+
+const projectQuestions=["projects","ai project","ml project","portfolio project"];
+
+const educationQuestions=["education","college","degree","university"];
+
+const experienceQuestions=["experience","work experience","career"];
+
+const contactQuestions=["contact","email","phone","mobile"];
+
+const portfolioQuestions=["portfolio","website","this site"];
+
+
+/* MATCH FUNCTION */
+
+function contains(list){
+return list.some(q=>message.includes(q));
+}
+
+let reply="";
+
+/* BOT RESPONSES */
+
+if(contains(nameQuestions)){
+reply="My name is Preetham. I am an AI Engineer passionate about building intelligent systems and data-driven applications.";
+}
+
+else if(contains(workQuestions)){
+reply="I work as an AI and Full Stack Developer where I build AI-powered applications and integrate machine learning models into real-world solutions.";
+}
+
+else if(contains(skillQuestions)){
+reply="My technical skills include Python, Machine Learning, SQL databases, Data Analysis using Pandas and NumPy, and Web Development using HTML, CSS and JavaScript.";
+}
+
+else if(contains(projectQuestions)){
+reply="My main projects include an Enterprise AI Knowledge Assistant and a Crop Recommendation System built using machine learning.";
+}
+
+else if(contains(educationQuestions)){
+reply="I completed my Bachelor of Computer Applications (BCA) from NDRK First Grade College under the University of Mysore.";
+}
+
+else if(contains(experienceQuestions)){
+reply="I have experience developing AI solutions, backend APIs, and full-stack applications for real-world business use cases.";
+}
+
+else if(contains(contactQuestions)){
+reply="You can contact me via email at preethamklpreethu@gmail.com or through my LinkedIn and GitHub profiles.";
+}
+
+else if(contains(portfolioQuestions)){
+reply="This portfolio website showcases my technical skills, AI projects, and professional background.";
+}
+
+else{
+reply="You can ask about my name, work, skills, projects, education, experience, or contact.";
+}
+
+/* BOT MESSAGE */
+
+chat.innerHTML+=`<div class="bot-message">${reply}</div>`;
+
+input.value="";
+
+chat.scrollTop=chat.scrollHeight;
+
+}
+
+</script>
+
+</body>
+</html>
+```
